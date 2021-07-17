@@ -58,20 +58,8 @@ class UserProfileForm(UserChangeForm):
         help_text=_(
             'Raw passwords are not stored, so there is no way to see this '
             'user’s password, but you can change the password using '
-            '<a href="{}">this form</a>.'
-        ),
+            '<a href="{}">this form</a>.'),
     )
-
-    # перенаправляем на страницу Смены пароля
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        password = self.fields.get('password')
-        if password:
-            password.help_text = password.help_text.format(
-                '../password_change.html')  # вот тут изменил путь и в urls.py
-        user_permissions = self.fields.get('user_permissions')
-        if user_permissions:
-            user_permissions.queryset = user_permissions.queryset.select_related('content_type')
 
     class Meta:
         model = CustomUser
