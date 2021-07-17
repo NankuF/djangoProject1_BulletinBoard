@@ -12,6 +12,7 @@
 3. Создаешь .ginignore:
 https://github.com/github/gitignore/blob/master/Python.gitignore
    .idea
+   pg-data
 
 4. Подключаешься к Git:
    в Pycharm: Git -> Github -> Share project on GitHub
