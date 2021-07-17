@@ -24,7 +24,6 @@ class UserProfileView(UpdateView):
     template_name = 'users/profile.html'
     # как сделать редирект с <int:pk>?
     success_url = reverse_lazy('bboard:index')
-    # fields = ('first_name', 'last_name', 'phone', 'password')
     form_class = UserProfileForm
 
     def form_valid(self, form):
