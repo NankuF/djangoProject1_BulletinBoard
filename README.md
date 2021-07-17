@@ -9,7 +9,7 @@
    poetry add pillow
    poetry add psycopg2
    
-3. Создаешь .ginignore:
+3. Создаешь .gitignore:
 https://github.com/github/gitignore/blob/master/Python.gitignore
    .idea
    pg-data
