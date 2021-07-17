@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+<a href="{% url 'bboard:index' %}">На главную</a>
+<a href="{% url 'bboard:contacts' %}">Контакты</a><br>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>
