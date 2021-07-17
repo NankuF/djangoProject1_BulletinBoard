@@ -8,6 +8,7 @@
    poetry add django -> result: create poetry.lock
    poetry add pillow
    poetry add psycopg2
+   poetry add django-environ
    
 3. Создаешь .gitignore:
 https://github.com/github/gitignore/blob/master/Python.gitignore
