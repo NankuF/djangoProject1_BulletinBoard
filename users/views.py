@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -48,3 +48,15 @@ class UserRegisterView(CreateView):
     def form_valid(self, form):
         messages.success(self.request, 'Регистрация прошла успешно. Авторизуйтесь')
         return super().form_valid(form)
+
+
+def activate(request, activation_key):
+    user = CustomUser.objects.filter(activation_key=activation_key).first()
+    if not user:
+        return redirect('/404')
+    if not user.is_activation_key_expires():
+        user.is_active = True
+        user.save()
+        messages.success(request, 'Ваш аккаунт активирован!')
+        return render(request, 'users/success_activate.html')
+    return render(request, 'users/key_expired.html')
