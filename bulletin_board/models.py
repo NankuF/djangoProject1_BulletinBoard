@@ -12,12 +12,12 @@ class Rubric(models.Model):
 class Bboard(models.Model):
     title = models.CharField(verbose_name='Товар', max_length=50)
     content = models.TextField(verbose_name='Описание', blank=True, null=True)
-    price = models.DecimalField(verbose_name='Цена', max_digits=9, decimal_places=2)
+    price = models.DecimalField(verbose_name='Цена', max_digits=9, decimal_places=0)
     published = models.DateTimeField(verbose_name='Опубликовано', auto_now_add=True, db_index=True)
     updated_at = models.DateTimeField(verbose_name='Обновлено', auto_now=True)
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    rubric = models.ForeignKey(Rubric, on_delete=models.PROTECT, null=True)
+    rubric = models.ForeignKey(Rubric, on_delete=models.PROTECT, null=True, verbose_name='Рубрика')
 
     class Meta:
         verbose_name_plural = 'Объявления'

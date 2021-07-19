@@ -8,10 +8,10 @@
     {% for bb in bbs %}
         <div>
             <h2>{{ bb.title }}</h2>
-            <p>{{ bb.content }}</p>
-            <p><a href="{% url 'bboard:by_rubric' bb.rubric.pk %}">{{ bb.rubric.name }}</a></p>
-            <p>{{ bb.price }} руб.</p>
-            <p> {{ bb.published|date:'d.m.Y H:i:s' }}</p>
+            <p>Подробности: {{ bb.content }}</p>
+            <p>Цена: {{ bb.price }} руб.</p>
+            <p>Опубликовано: {{ bb.published|date:'d.m.Y H:i:s' }}</p>
+            <p>Рубрика: <a href="{% url 'bboard:by_rubric' bb.rubric.pk %}">{{ bb.rubric.name }}</a></p>
             <p>______________</p>
         </div>
     {% endfor %}

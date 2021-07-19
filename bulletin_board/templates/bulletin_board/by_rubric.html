@@ -9,10 +9,11 @@
 
     {% for bb in bbs %}
         <div>
-            <h2> {{ bb.title }}</h2>
-            <p>{{ bb.content }}</p>
-            <p>{{ bb.price }} руб.</p>
-            <p> {{ bb.published|date:'d.m.Y H:i:s' }}</p>
+            <h2>{{ bb.title }}</h2>
+            <p>Подробности: {{ bb.content }}</p>
+            <p>Цена: {{ bb.price }} руб.</p>
+            <p>Опубликовано: {{ bb.published|date:'d.m.Y H:i:s' }}</p>
+            <p>______________</p>
         </div>
     {% endfor %}
 
