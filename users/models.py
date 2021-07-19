@@ -11,7 +11,7 @@ from django.utils.timezone import now
 
 class CustomUser(AbstractUser):
     # models.IntegerField неверный выбор для phone
-    phone = models.IntegerField(verbose_name='Телефон', unique=True, blank=True, null=True)
+    phone = models.CharField(verbose_name='Телефон', unique=True, max_length=12, blank=True, null=True)
     activation_key = models.CharField(max_length=128, blank=True, null=True)
     activation_key_expires = models.DateTimeField(blank=True, null=True)
 
