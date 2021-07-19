@@ -3,7 +3,6 @@ import random
 from datetime import timedelta
 
 from django.conf import settings
-from django.core.mail import send_mail
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
@@ -34,11 +33,6 @@ class CustomUser(AbstractUser):
         super(CustomUser, self).save(*args, **kwargs)
 
     def is_activation_key_expires(self):
-        if now() <= self.activation_key_expires:
-            return False
-        else:
-            return True
+        """Вернет True, если срок активации не истек"""
+        return now() <= self.activation_key_expires
 
-        # def email_user(self, subject, message, from_email=None, **kwargs):
-        #     """Send an email to this user."""
-        #     send_mail(subject, message, from_email, [self.email], **kwargs)
