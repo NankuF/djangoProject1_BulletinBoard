@@ -5,6 +5,8 @@ on:
     branches: [ test_branch,user,master ]
   pull_request:
     branches: [ test_branch,user,master ]
+env:
+    SECRET_KEY: ${{secrets.SECRET_KEY}}
 
 jobs:
   test:
