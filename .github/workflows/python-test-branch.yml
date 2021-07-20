@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ test_branch,user,master ]
 env:
-  SECRET_KEY: ${{secrets.SECRET_KEY}}
+  secret_key: ${{secrets.SECRET_KEY}}
   DEBUG: ${{secrets.DEBUG}}
   EMAIL_HOST: ${{secrets.EMAIL_HOST}}
   EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
@@ -44,6 +44,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with Unittest
       env:
-        SECRET_KEY: ${{secrets.SECRET_KEY}}
+        secret_key: ${{secrets.SECRET_KEY}}
       run: |
         python manage.py test
