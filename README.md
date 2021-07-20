@@ -8,6 +8,7 @@
    poetry add django -> result: create poetry.lock
    poetry add pillow
    poetry add psycopg2
+   poetry add django-environ
    
 3. Создаешь .gitignore:
 https://github.com/github/gitignore/blob/master/Python.gitignore
@@ -43,3 +44,27 @@ DATABASES = {
 }
    
 6. Кодишь в ветках, мержишь в мастер.
+
+
+Сделано:
+1. User:
+   Вход по логину
+   Выход
+   Регистрация
+   Изменение профиля
+   Изменение пароля
+   Активация логина по емайл
+   
+2. Bboard:
+   Рубрики,
+   Добавление объявлений с привязкой к юзеру.
+   
+
+
+   
+
+Сделать:
+Логин по соц.сети (работает сомнительно)
+Отправка email через celery
+Автотесты через GitAction
+   

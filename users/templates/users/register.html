@@ -2,5 +2,15 @@
 {% load static %}
 
 {% block content %}
+    <h1>Регистрация</h1>
+    {% if form.success %}
+        Регистрация завершена
+    {% endif %}
+
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register">
+    </form>
 
 {% endblock %}
