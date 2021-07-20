@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'bulletin_board',
     'users',
+    'unittest',
 ]
 
 MIDDLEWARE = [
