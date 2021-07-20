@@ -44,6 +44,8 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with Unittest
+      run: |
+        python manage.py test
       env:
         SECRET_KEY: ${{secrets.SECRET_KEY}}
         DEBUG: ${{secrets.DEBUG}}
@@ -52,8 +54,5 @@ jobs:
         EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
         EMAIL_PORT: ${{secrets.EMAIL_PORT}}
         EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
-      run: |
-        python3 manage.py test
-        python manage.py test
 
 
