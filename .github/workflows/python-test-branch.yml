@@ -14,7 +14,6 @@ env:
   EMAIL_PORT: ${{secrets.EMAIL_PORT}}
   EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
 
-
 jobs:
   test:
 
