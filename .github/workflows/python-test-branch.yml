@@ -28,16 +28,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DEBUG: ${{secrets.DEBUG}}
-        EMAIL_HOST: ${{secrets.EMAIL_HOST}}
-        EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
-        EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
-        EMAIL_PORT: ${{secrets.EMAIL_PORT}}
-        EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
-        
+       
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -53,6 +44,14 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with Unittest
+      env:
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
+        DEBUG: ${{secrets.DEBUG}}
+        EMAIL_HOST: ${{secrets.EMAIL_HOST}}
+        EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+        EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+        EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+        EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
       run: |
         python3 manage.py test
         python manage.py test
