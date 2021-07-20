@@ -27,9 +27,9 @@ jobs:
       postgres:
         image: postgres:12
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: user
+          POSTGRES_DB: bboard
         ports: ['5433:5432']
 
     steps:
