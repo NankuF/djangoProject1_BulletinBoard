@@ -32,7 +32,7 @@ jobs:
           POSTGRES_DB: postgres
         ports: ['5433:5432']
 
-    steps:
+  steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
