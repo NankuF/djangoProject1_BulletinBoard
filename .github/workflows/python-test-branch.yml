@@ -54,6 +54,6 @@ jobs:
     - name: Test with Unittest
       env:
         SECRET_KEY: ${{secrets.SECRET_KEY}}
-        DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
+#         DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
       run: |
         python manage.py test
