@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [ test_branch,user,master ]
 env:
-    SECRET_KEY: ${{secrets.SECRET_KEY}}
-    DEBUG: ${{secrets.DEBUG}}
-    EMAIL_HOST: ${{secrets.EMAIL_HOST}}
-    EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
-    EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
-    EMAIL_PORT: ${{secrets.EMAIL_PORT}}
-    EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
+  DEBUG: ${{secrets.DEBUG}}
+  EMAIL_HOST: ${{secrets.EMAIL_HOST}}
+  EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+  EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+  EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+  EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
     
     
     
@@ -49,3 +49,4 @@ jobs:
     - name: Test with Unittest
       run: |
         python3 manage.py test
+        python manage.py test
