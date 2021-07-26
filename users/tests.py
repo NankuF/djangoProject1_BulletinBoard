@@ -1,5 +1,3 @@
-from datetime import timedelta
-
 from django.test import TestCase
 from django.utils.timezone import now
 
@@ -31,7 +29,7 @@ class TestCustomUser(TestCase):
         self.assertEqual(self.custom_user.phone, '+71234567890')
 
     def test_user_is_active(self):
-        """Проверям, что у нового юзера изначально неактивирован аккаунт"""
+        """Проверяем, что у нового юзера изначально неактивирован аккаунт"""
         self.assertEqual(self.custom_user.is_active, False)
 
     def test_activation_key_in_str(self):

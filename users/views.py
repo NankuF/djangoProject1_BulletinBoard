@@ -1,14 +1,14 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from .forms import UserRegisterForm, UserProfileForm
 from .models import CustomUser
 
 
 class UserLoginView(LoginView):
-    """ Вызывается стандартная форма аутентификации """
+    """ Логин. Вызывается стандартная форма аутентификации """
     template_name = 'users/login.html'
     # не работает
     # authentication_form = UserLoginForm  # возможно это тоже лишнее
@@ -16,10 +16,12 @@ class UserLoginView(LoginView):
 
 
 class UserLogoutView(LogoutView):
+    """Выход пользователя"""
     pass
 
 
 class UserProfileView(UpdateView):
+    """Профиль пользователя"""
     model = CustomUser
     template_name = 'users/profile.html'
     # как сделать редирект с <int:pk>?
@@ -32,6 +34,7 @@ class UserProfileView(UpdateView):
 
 
 class UserPasswordChangeView(PasswordChangeView):
+    """Изменения пароля в профиле"""
     success_url = reverse_lazy('bboard:index')
     template_name = 'users/password_change.html'
 
@@ -41,6 +44,7 @@ class UserPasswordChangeView(PasswordChangeView):
 
 
 class UserRegisterView(CreateView):
+    """Регистрация пользователя"""
     template_name = 'users/register.html'
     success_url = reverse_lazy('users:login')
     form_class = UserRegisterForm
@@ -51,6 +55,7 @@ class UserRegisterView(CreateView):
 
 
 def activate(request, activation_key):
+    """Активация пользователя после перехода по ссылке из письма"""
     user = CustomUser.objects.filter(activation_key=activation_key).first()
     if not user:
         return redirect('/404')

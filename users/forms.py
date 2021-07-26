@@ -14,6 +14,7 @@ from .models import CustomUser
 
 
 class UserRegisterForm(UserCreationForm):
+    """Форма регистрации"""
     class Meta:
         model = CustomUser
         fields = ('username', 'email', 'password1', 'password2', 'phone')
@@ -24,6 +25,7 @@ class UserRegisterForm(UserCreationForm):
 # ReadOnlyPasswordHashField обязателен, иначе изменения не применятся
 # ReadOnlyPasswordHashWidget и ReadOnlyPasswordHashField должны быть выше UserProfileForm
 class ReadOnlyPasswordHashWidget(forms.Widget):
+    """Need for UserProfileForm"""
     template_name = 'auth/widgets/read_only_password_hash.html'
     read_only = True
 
@@ -45,6 +47,7 @@ class ReadOnlyPasswordHashWidget(forms.Widget):
 
 
 class ReadOnlyPasswordHashField(forms.Field):
+    """Need for UserProfileForm"""
     widget = ReadOnlyPasswordHashWidget
 
     def __init__(self, *args, **kwargs):
@@ -54,6 +57,7 @@ class ReadOnlyPasswordHashField(forms.Field):
 
 
 class UserProfileForm(UserChangeForm):
+    """Форма профиля"""
     password = ReadOnlyPasswordHashField(
         label=_("Password"),
         help_text=_(

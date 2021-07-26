@@ -1,6 +1,6 @@
 from django import forms
 from .models import Rubric, Bboard
-from users.models import CustomUser
+
 
 
 class RubricForm(forms.ModelForm):

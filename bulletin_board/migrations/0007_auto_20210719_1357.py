@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('bulletin_board', '0006_remove_bboard_created_at'),
     ]
@@ -19,6 +18,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='bboard',
             name='rubric',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='bulletin_board.rubric', verbose_name='Рубрика'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='bulletin_board.rubric',
+                                    verbose_name='Рубрика'),
         ),
     ]
