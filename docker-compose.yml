@@ -1,26 +1,26 @@
 version: "3.9"
 services:
-#  webapp:
-#    restart: always
-#    build:
-#      context: ../Pet_project_Django_ecommerce
-#      dockerfile: ./Dockerfile
-#    ports:
-#    - 8000:8000
-#    command: [ 'python', 'manage.py', 'runserver', '0.0.0.0:8000' ]
-#    depends_on:
-#      - redis
-#      - postg
-#
+  #  webapp:
+  #    restart: always
+  #    build:
+  #      context: ../Pet_project_Django_ecommerce
+  #      dockerfile: ./Dockerfile
+  #    ports:
+  #    - 8000:8000
+  #    command: [ 'python', 'manage.py', 'runserver', '0.0.0.0:8000' ]
+  #    depends_on:
+  #      - redis
+  #      - postg
+  #
   redis:
     restart: always
     image: redis
     ports:
-    - 6379:6379
-#    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+      - 6379:6379
+  #    command: ["redis-server", "--bind", "redis", "--port", "6379"]
 
 
-  postg_bboard:   # host в django?
+  postg_bboard: # host в django?
     restart: always
     image: postgres:12
     environment:
@@ -28,8 +28,8 @@ services:
       POSTGRES_USER: 'user'
       POSTGRES_PASSWORD: 'user'
     volumes:
-    - ./pg-data:/var/lib/postgresql/data
+      - ./pg-data:/var/lib/postgresql/data
     ports:
-    - 5433:5432
+      - 5433:5432
 
 # docker-compose up postg

@@ -1,3 +1,8 @@
-<p>Аккаунт активирован</p>
+{% extends 'bulletin_board/base.html' %}
+{% load static %}
 
-<a href="{% url 'users:login' %}">Войти</a>
+{% block content %}
+
+    <a href="{% url 'users:login' %}">Войти</a>
+
+{% endblock %}

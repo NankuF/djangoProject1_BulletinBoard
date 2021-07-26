@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import bboard_index, contacts, by_rubric,BbCreateView
+from .views import bboard_index, contacts, by_rubric, BbCreateView
 
 app_name = 'bboard'
 

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegisterView, UserLoginView, UserLogoutView,UserProfileView,UserPasswordChangeView,activate
+from .views import UserRegisterView, UserLoginView, UserLogoutView, UserProfileView, UserPasswordChangeView, activate
 
 app_name = 'users'
 

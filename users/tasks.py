@@ -4,7 +4,6 @@ import time
 from bulletin_board.models import Bboard
 from djangoProject1.celery import celery_app
 
-
 # celery_app.task
 # def send_mail_task(user_mail):
 #     subject = 'Ключ активации',

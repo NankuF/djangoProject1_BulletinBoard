@@ -2,17 +2,18 @@
 {% load static %}
 
 {% block content %}
-    {% if form.errors %}
-        <p> Ваш логин и пароль неверны. Попробуйте еще раз</p>
-    {% endif %}
+    <div class="sticky-top">
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                <p> Ваш логин или пароль неверны. Попробуйте еще раз!</p>
+            </div>
+            </div>
+        {% endif %}
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
-        <p>???</p>
-        {{ myform.as_p }}
-        <input type="submit" value="Login">
+        <input type="submit" value="Войти">
     </form>
 
 
