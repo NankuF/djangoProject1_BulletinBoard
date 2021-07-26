@@ -1,2 +1,9 @@
+{% extends 'bulletin_board/base.html' %}
+{% load static %}
+
+{% block content %}
+
 <p>Срок действия ключа истек</p>
 <a href="{% url 'users:register' %}">Регистрация</a>
+
+{% endblock %}

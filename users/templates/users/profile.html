@@ -2,13 +2,10 @@
 {% load static %}
 
 {% block content %}
-<h1>Профиль</h1>
-
-
+    <h1>Профиль</h1>
     <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Сохранить">
     </form>
 {% endblock %}

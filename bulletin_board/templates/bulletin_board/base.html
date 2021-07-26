@@ -54,9 +54,21 @@
 <br>
 {% if messages %}
     {% for message in messages %}
-        {{ message }}
+        <div class="sticky-top">
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </div>
     {% endfor %}
 {% endif %}
+
 <br>
 
 <div class="btn-group">
