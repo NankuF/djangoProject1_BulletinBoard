@@ -94,14 +94,14 @@ if DEBUG:
             'PORT': '5433',
         }
     }
-else:
-    DATABASES = {
-        'default': {
-            'NAME': 'geekshop',
-            'ENGINE': 'django.db.backends.postgresql',
-            'USER': 'postgres',
-        }
-    }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'NAME': 'geekshop',
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'USER': 'postgres',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
