@@ -8,10 +8,11 @@ authors = ["NankuF <fireloki87@gmail.com>"]
 python = "^3.9"
 Django = "^3.2.5"
 Pillow = "^8.3.1"
-psycopg2 = "^2.9.1"
 django-environ = "^0.4.5"
 celery = "^5.1.2"
 redis = "^3.5.3"
+gunicorn = "^20.1.0"
+psycopg2-binary = "^2.9.1"
 
 [tool.poetry.dev-dependencies]
 

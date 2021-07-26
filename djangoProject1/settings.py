@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '89.108.88.12']
 
 # Application definition
 
@@ -83,16 +83,25 @@ WSGI_APPLICATION = 'djangoProject1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# if DEBUG:
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bboard',
-        'USER': 'user',
-        'PASSWORD': 'user',
-        'HOST': 'localhost',
-        'PORT': '5433',
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'bboard',
+            'USER': 'user',
+            'PASSWORD': 'user',
+            'HOST': 'localhost',
+            'PORT': '5433',
+        }
     }
-}
+# else:
+#     DATABASES = {
+#         'default': {
+#             'NAME': 'geekshop',
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'USER': 'postgres',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,7 +138,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (BASE_DIR / 'static',)
+if DEBUG:
+    STATICFILES_DIRS = (BASE_DIR / 'static',)
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -149,7 +161,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # server settings
 if DEBUG:
-    DOMAIN_NAME = 'http://127.0.0.1:8000/'
+    DOMAIN_NAME = 'http://127.0.0.1/'
 else:
     DOMAIN_NAME = 'http://89.108.88.12/'
 
