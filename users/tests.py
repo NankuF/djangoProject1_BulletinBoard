@@ -44,4 +44,4 @@ class TestCustomUser(TestCase):
 
     def test_activation_key_expires_2(self):
         """Проверяем, что время создания юзера не равно activation_key_expires"""
-        self.assertTrue(self.custom_user.is_activation_key_expires())
+        self.assertTrue(self.custom_user.is_activation_key_expired())

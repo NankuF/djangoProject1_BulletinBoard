@@ -25,14 +25,18 @@ class CustomUser(AbstractUser):
             self.email_user(
                 subject='Ключ активации',
                 message=f"""
-                {self.username}, для активации аккаунта перейдите по ссылке 
-                http://127.0.0.1:8000/{settings.APP_NAME}/activate/{self.activation_key}                 
+                {self.username}, для активации аккаунта перейдите по ссылке
+                {settings.DOMAIN_NAME}{settings.APP_NAME}/activate/{self.activation_key}
                 """,
                 from_email=settings.EMAIL_HOST_USER)
 
         super(CustomUser, self).save(*args, **kwargs)
 
-    def is_activation_key_expires(self):
-        """Вернет True, если срок активации не истек"""
-        return now() <= self.activation_key_expires
+
+    def is_activation_key_expired(self):
+        """Вернет True, если срок активации истек"""
+        if now() <= self.activation_key_expires:
+            return False
+        else:
+            return True
 
