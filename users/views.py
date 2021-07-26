@@ -54,7 +54,7 @@ def activate(request, activation_key):
     user = CustomUser.objects.filter(activation_key=activation_key).first()
     if not user:
         return redirect('/404')
-    if not user.is_activation_key_expires():
+    if not user.is_activation_key_expired():
         user.is_active = True
         user.save()
         messages.success(request, 'Ваш аккаунт активирован!')

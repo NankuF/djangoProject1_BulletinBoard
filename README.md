@@ -45,26 +45,65 @@ DATABASES = {
    
 6. Кодишь в ветках, мержишь в мастер.
 
+7. Важное о GitAction:
+В workflow надо запустить весь проект! Это значит, нужно установить Python, Postgreqsl и все зависимости. 
+Передать данные из .env в Git , создав в settings -> enviroments и добавив не только Enviroment secrets, но и  Perository Secrets! 
+https://github.com/NankuF/djangoProject1_BulletinBoard/settings/environments ;
+   Repository secrets нужен, чтобы Питон мог запустить тесты, а Enviroment secrets нужны чтобы запустился Django (ну я так понял)
+
 
 Сделано:
 1. User:
-   Вход по логину
-   Выход
-   Регистрация
-   Изменение профиля
-   Изменение пароля
-   Активация логина по емайл
+    Вход по логину,
+    Выход,
+    Регистрация,
+    Изменение профиля,
+    Изменение пароля,
+    Активация логина по емайл.
    
 2. Bboard:
-   Рубрики,
-   Добавление объявлений с привязкой к юзеру.
+    Рубрики,
+    Добавление объявлений с привязкой к юзеру.
+   (Рубрики можно создать через админ панель. Объявления могут создавать все через форму на странице)
    
+3. Tests:
+    Автотесты через GitAction на базе unittest.
+   Проверено только users.models.py
 
 
    
 
 Сделать:
-Логин по соц.сети (работает сомнительно)
 Отправка email через celery
-Автотесты через GitAction
+Логин по соц.сети (работает сомнительно)
+
+Установка celery и redis локально: https://webdevblog.ru/asinhronnye-zadachi-v-django-s-redis-i-celery/
+poetry add celery
+poetry add redis
+В djangoProject1 создаем файл celery.py
+В djangoProject1 заполняем  __init__.py
+В djangoProject1 заполняем settings.py
+В users создаем tasks.ru (асинхронная отправка email)
+# celery   (redis in docker-compose)
+CELERY_BROKER_URL = 'redis://localhost:6379'  
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'  
+CELERY_ACCEPT_CONTENT = ['application/json']  
+CELERY_RESULT_SERIALIZER = 'json'  
+CELERY_TASK_SERIALIZER = 'json' 
+
+Чтобы celery установленный в venv запускался с Redis(установленным в docker-compose), необходимо прописать
+    ports:
+    - 6379:6379  # (HOST_PORT:CONTAINER_PORT)
+для сервиса redis, потому что по умолчанию redis слушает 6379/tcp, а надо чтобы слушал 6379->6379/tcp
+(Важно отметить различие между HOST_PORT и CONTAINER_PORT. В приведенном выше примере, для redis, то HOST_PORT есть 6379
+и контейнер порт 6379(Redis по умолчанию). Сетевое взаимодействие между сервисами использует расширение 
+CONTAINER_PORT. Когда HOST_PORT определено, сервис доступен и за пределами роя.)
+
+Команды:
+celery -A djangoProject1 worker -l info   (запускаем наши задачи в celery)
+
+docker-compose up redis (запуск сервера в докере)
+docker-compose ps (смотрим список запущенных контейнеров)
+docker exec -it djangoproject1_redis_1 redis-cli ping  (ответ в консоли будет PONG если сервер запущен)
+
    

@@ -12,16 +12,19 @@ services:
 #      - redis
 #      - postg
 #
-#  redis:
-#    restart: always
-#    image: redis
+  redis:
+    restart: always
+    image: redis
+    ports:
+    - 6379:6379
+#    command: ["redis-server", "--bind", "redis", "--port", "6379"]
 
 
   postg_bboard:   # host в django?
     restart: always
     image: postgres:12
     environment:
-      POSTGRES_DB: 'bboard'  # name в django
+      POSTGRES_DB: 'bboard'  # name db в django
       POSTGRES_USER: 'user'
       POSTGRES_PASSWORD: 'user'
     volumes:
