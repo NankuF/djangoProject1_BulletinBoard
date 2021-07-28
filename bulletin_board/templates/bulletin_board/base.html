@@ -77,7 +77,7 @@
 <div class="btn-group">
     {% for rubric in rubrics %}
 
-        <a href="{% url 'bboard:by_rubric' rubric.pk %}" class="btn btn-primary active"
+        <a href="{% url 'bboard:by_rubric' rubric.slug %}" class="btn btn-primary active"
            aria-current="page">{{ rubric.name }}</a>
     {% endfor %}
 </div>

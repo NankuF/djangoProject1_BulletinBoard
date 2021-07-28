@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -20,10 +20,11 @@ def bboard_index(request):
     return render(request, 'bulletin_board/index.html', context)
 
 
-def by_rubric(request, rubric_pk):
+def by_rubric(request, rubric_slug):
     """Отдельно выбранная рубрика"""
-    current_rubric = Rubric.objects.get(pk=rubric_pk)
-    bbs = Bboard.objects.filter(rubric=rubric_pk)
+    current_rubric = Rubric.objects.get(slug=rubric_slug)
+    # current_rubric = get_object_or_404(Rubric, slug=rubric_slug)
+    bbs = Bboard.objects.filter(rubric__slug=rubric_slug)
     rubrics = Rubric.objects.all()
     context = {
         'bbs': bbs,
