@@ -1,7 +1,7 @@
 from django.db import models
 
 # from django.urls import reverse
-# from django.utils.text import slugify
+from django.utils.text import slugify
 
 from users.models import CustomUser
 
@@ -17,11 +17,11 @@ class Rubric(models.Model):
     # def get_absolute_url(self, *args, **kwargs):
     #     return reverse('current_rubric', kwargs={'rubric_slug': self.slug})
 
-    # не пригодилось
-    # def save(self, *args, **kwargs):
-    #     if not self.slug:
-    #         self.slug = slugify(self.name)
-    #     super(Rubric, self).save(*args, **kwargs)
+    # нужно для того, чтобы при создании присваивался slug автоматически
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Rubric, self).save(*args, **kwargs)
 
 
 class Bboard(models.Model):
@@ -42,6 +42,11 @@ class Bboard(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Bboard, self).save(*args, **kwargs)
 
     # не пригодилось
     # def get_absolute_url(self, *args, **kwargs):

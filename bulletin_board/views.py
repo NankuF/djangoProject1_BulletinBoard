@@ -23,6 +23,7 @@ def bboard_index(request):
 def by_rubric(request, rubric_slug):
     """Отдельно выбранная рубрика"""
     current_rubric = Rubric.objects.get(slug=rubric_slug)
+    # или так, тоже работает
     # current_rubric = get_object_or_404(Rubric, slug=rubric_slug)
     bbs = Bboard.objects.filter(rubric__slug=rubric_slug)
     rubrics = Rubric.objects.all()
