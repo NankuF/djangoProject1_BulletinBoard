@@ -161,7 +161,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # server settings
 if DEBUG:
-    DOMAIN_NAME = 'http://127.0.0.1/'
+    DOMAIN_NAME = 'http://127.0.0.1:8000/'
 else:
     DOMAIN_NAME = 'http://89.108.88.12/'
 

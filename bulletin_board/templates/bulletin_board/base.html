@@ -30,7 +30,7 @@
                         <a class="nav-link" href="{% url 'bboard:add_ad' %}">Добавить объявление</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:profile' user.pk %}">Профиль</a>
+                        <a class="nav-link" href="{% url 'users:profile' user.slug %}">Профиль</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:logout' %}">Выйти {{ user.username }}</a>
@@ -77,7 +77,7 @@
 <div class="btn-group">
     {% for rubric in rubrics %}
 
-        <a href="{% url 'bboard:by_rubric' rubric.pk %}" class="btn btn-primary active"
+        <a href="{% url 'bboard:by_rubric' rubric.slug %}" class="btn btn-primary active"
            aria-current="page">{{ rubric.name }}</a>
     {% endfor %}
 </div>

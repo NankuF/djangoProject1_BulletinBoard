@@ -5,6 +5,7 @@ from datetime import timedelta
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.text import slugify
 from django.utils.timezone import now
 
 
@@ -12,6 +13,7 @@ class CustomUser(AbstractUser):
     """Таблица юзеров, кастомная"""
     # models.IntegerField неверный выбор для phone
     phone = models.CharField(verbose_name='Телефон', unique=True, max_length=12, blank=True, null=True)
+    slug = models.SlugField(verbose_name='URL', max_length=150, unique=True)
     activation_key = models.CharField(max_length=128, blank=True, null=True)
     activation_key_expires = models.DateTimeField(blank=True, null=True)
 
@@ -31,6 +33,9 @@ class CustomUser(AbstractUser):
                 {settings.DOMAIN_NAME}{settings.APP_NAME}/activate/{self.activation_key}
                 """,
                 from_email=settings.EMAIL_HOST_USER)
+
+        if not self.slug:
+            self.slug = slugify(self.username)
 
         super(CustomUser, self).save(*args, **kwargs)
 
