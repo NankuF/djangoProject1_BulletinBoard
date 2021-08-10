@@ -1,0 +1,14 @@
+{% extends 'bulletin_board/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% for users in user_info %}
+        {{ users.user_name }}<br>
+    {% endfor %}
+    {% for users in user_info %}
+        {{ users.username_count }}<br>
+    {% endfor %}
+    {% with user_info as u %}
+        its count! {{ u.count }}
+    {% endwith %}
+{% endblock %}

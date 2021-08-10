@@ -5,6 +5,8 @@ from django.utils.text import slugify
 
 from users.models import CustomUser
 
+from django.utils.functional import cached_property
+
 
 class Rubric(models.Model):
     name = models.CharField(verbose_name='Рубрика', max_length=128, null=True)
@@ -51,3 +53,15 @@ class Bboard(models.Model):
     # не пригодилось
     # def get_absolute_url(self, *args, **kwargs):
     #     return reverse('bboard:by_rubric', kwargs={'rubric_slug': self.slug})
+
+    @cached_property
+    def user_name(self):
+        return self.user.username
+
+    def username_count(self):
+        lst = []
+        for i in self.user_name:
+            lst.append(i)
+        return lst
+
+
