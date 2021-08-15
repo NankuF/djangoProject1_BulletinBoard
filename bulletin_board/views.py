@@ -3,6 +3,8 @@ from django.core.cache import cache
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from django.db.models import F
+
 
 from .models import Bboard, Rubric
 from .forms import BboardForm
@@ -87,4 +89,12 @@ def see_user_info(request):
         context = {
             'user_info': Bboard.objects.all().select_related()
         }
+    # Берем объект с ценой 0 и меняем его на 1000
+    if Bboard.objects.get(price=0):
+        print(Bboard.objects.get(price=0))
+        user_count = Bboard.objects.get(price=0)
+        user_count.price = F('price') + 1000
+        user_count.save()
+    else:
+        pass
     return render(request, 'bulletin_board/users_info.html', context)
