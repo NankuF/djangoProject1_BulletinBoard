@@ -65,3 +65,21 @@ class Bboard(models.Model):
         return lst
 
 
+# у меня тоже нет идей, куда его впихнуть в проекте
+# пишу только ради ДЗ
+class Client(models.Model):
+    REGULAR = 'R'
+    GOLD = 'G'
+    PLATINUM = 'P'
+    ANNOUNT_TYPE_CHOICE = [
+        (REGULAR, 'Regular'),
+        (GOLD, 'Gold'),
+        (PLATINUM, 'Platinum')
+    ]
+    name = models.CharField(max_length=50)
+    registered_on = models.DateField()
+    account_type = models.CharField(
+        max_length=1,
+        choices=ANNOUNT_TYPE_CHOICE,
+        default=REGULAR
+    )

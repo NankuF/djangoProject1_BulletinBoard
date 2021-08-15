@@ -3,10 +3,9 @@ from django.core.cache import cache
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from django.db.models import F
+from django.db.models import F, Case, Value, When
 
-
-from .models import Bboard, Rubric
+from .models import Bboard, Rubric, Client
 from .forms import BboardForm
 from .tasks import send_email_task
 
@@ -98,3 +97,16 @@ def see_user_info(request):
     else:
         pass
     return render(request, 'bulletin_board/users_info.html', context)
+
+
+def check_client_model():
+    ann = Client.objects.annotate(
+        discount=Case(
+            When(account_type=Client.GOLD, then=Value('5%')),
+            When(account_type=Client.PLATINUM, then=Value('10%'),
+                 default=Value('0%'),
+                 )
+        )
+    )
+    return ann
+       
