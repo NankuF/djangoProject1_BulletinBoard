@@ -1,7 +1,9 @@
 import hashlib
 import random
+import time
 from datetime import timedelta
 
+from celery import shared_task
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -29,9 +31,9 @@ class CustomUser(AbstractUser):
             self.email_user(
                 subject='Ключ активации',
                 message=f"""
-                {self.username}, для активации аккаунта перейдите по ссылке
-                {settings.DOMAIN_NAME}{settings.APP_NAME}/activate/{self.activation_key}
-                """,
+                    {self.username}, для активации аккаунта перейдите по ссылке
+                    {settings.DOMAIN_NAME}{settings.APP_NAME}/activate/{self.activation_key}
+                    """,
                 from_email=settings.EMAIL_HOST_USER)
 
         if not self.slug:

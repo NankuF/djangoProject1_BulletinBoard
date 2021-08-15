@@ -1,0 +1,41 @@
+Использование LOW_CACHE:
+2 queries in 10.00ms
+
+without LOW_CACHE:
+3 queries in 16.00ms
+
+
+Использование cache_page:
+(env) root@89-108-88-12:~/django/djangoProject1_BulletinBoard# siege  http://89.108.88.12/ -r25 -c10
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+Transactions:                    750 hits
+Availability:                 100.00 %
+Elapsed time:                   9.71 secs
+Data transferred:              11.14 MB
+Response time:                  0.08 secs
+Transaction rate:              77.24 trans/sec
+Throughput:                     1.15 MB/sec
+Concurrency:                    6.03
+Successful transactions:         750
+Failed transactions:               0
+Longest transaction:            5.04
+Shortest transaction:           0.01
+
+(env) root@89-108-88-12:~/django/djangoProject1_BulletinBoard# siege  http://89.108.88.12/ -r25 -c10
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+Transactions:                    750 hits
+Availability:                 100.00 %
+Elapsed time:                   5.87 secs
+Data transferred:              11.14 MB
+Response time:                  0.08 secs
+Transaction rate:             127.77 trans/sec
+Throughput:                     1.90 MB/sec
+Concurrency:                    9.64
+Successful transactions:         750
+Failed transactions:               0
+Longest transaction:            0.27
+Shortest transaction:           0.02
